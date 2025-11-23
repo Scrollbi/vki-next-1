@@ -2,6 +2,15 @@
 
 .Main {
   display: flex;
-  min-height: calc(100vh - 180px);
-  padding: 20px main.$webSidePadding;
+  min-height: calc(100vh - 140px);
+  padding: 40px main.$webSidePadding;
+  background: var(--background1);
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
 }
