@@ -12,7 +12,11 @@ interface StudentsHookInterface {
   addStudentMutate: (student: StudentInterface) => void;
 }
 
-const useStudents = (): StudentsHookInterface => {
+interface UseStudentsOptions {
+  onAddSuccess?: () => void;
+}
+
+const useStudents = (options?: UseStudentsOptions): StudentsHookInterface => {
   const queryClient = useQueryClient();
 
   const { data, refetch } = useQuery({
@@ -104,6 +108,8 @@ const useStudents = (): StudentsHookInterface => {
     // обновляем данные в случаи успешного выполнения mutationFn: async (student: StudentInterface) => addStudentApi(student)
     onSuccess: async (newStudent, variables, { previousStudents }) => {
       refetch();
+      // Вызываем callback при успешном добавлении
+      options?.onAddSuccess?.();
       // await queryClient.cancelQueries({ queryKey: ['students'] });
 
       // if (!previousStudents) {
