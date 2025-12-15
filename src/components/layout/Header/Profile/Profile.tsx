@@ -64,7 +64,7 @@ const Profile = ({
         </Link>
       )}
 
-      {getUser() && <Link href="/logout" onClick={logoutHandler}>Выход</Link>}
+      {getUser() && <span onClick={logoutHandler} className={styles.logoutLink}>Выход</span>}
     </div>
   );
 };

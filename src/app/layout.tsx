@@ -1,5 +1,6 @@
 import { dehydrate } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import 'reflect-metadata';
 import TanStackQuery from '@/containers/TanStackQuery';
 import queryClient from '@/api/reactQueryClient';
