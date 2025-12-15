@@ -37,10 +37,7 @@ const eslintConfig = [
     ],
     
         rules: {
-      // ...next.configs.recommended.rules, // Add next.js recommended rules
-      //...next.configs.coreWebVitals.rules,  // Add next.js core web vitals rules,
-      // ...js.configs.recommended.rules, // Use recommended ruleset
-      // ...typescriptEslintPlugin.configs["recommended-type-checked"].rules,  // Enable recommended typescript rules
+      
       ...stylistic.configs.recommended.rules,
 
       // Stylistic rules (configure these to your preference)

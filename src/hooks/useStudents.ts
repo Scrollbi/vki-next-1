@@ -22,7 +22,8 @@ const useStudents = (options?: UseStudentsOptions): StudentsHookInterface => {
   const { data, refetch } = useQuery({
     queryKey: ['students'],
     queryFn: () => getStudentsApi(),
-    enabled: false,
+    // Загружаем сразу при монтировании страницы
+    enabled: true,
   });
 
   /**
