@@ -1,6 +1,5 @@
 import { dehydrate } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import 'reflect-metadata';
 import TanStackQuery from '@/containers/TanStackQuery';
 import queryClient from '@/api/reactQueryClient';
@@ -27,7 +26,8 @@ const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
 
   const accessToken = cookieStore.get('accessToken')?.value;
 
-  const userFromServer = verifyAccessToken(accessToken);
+  // Автоматический logout при обновлении страницы - игнорируем токен
+  const userFromServer = null; // Всегда считаем пользователя неавторизованным
 
   // выполняется на сервере - загрузка студентов
   await queryClient.prefetchQuery({

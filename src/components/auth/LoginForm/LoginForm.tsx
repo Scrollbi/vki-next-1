@@ -2,7 +2,6 @@
 
 import { useState, type ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.scss';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -15,7 +14,6 @@ const LoginForm = (): ReactNode => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const { setUser } = useAuth();
-  const router = useRouter();
 
   const {
     register,
@@ -41,17 +39,14 @@ const LoginForm = (): ReactNode => {
 
       const data = await response.json();
 
+      setUser(data.user);
+
       if (!response.ok) {
         throw new Error(data?.message ?? 'Ошибка авторизации');
       }
 
-      setUser(data.user);
-      setSuccess('Авторизация успешна! Перенаправление...');
-
-      // Перенаправляем на главную страницу через 1 секунду
-      setTimeout(() => {
-        router.push('/');
-      }, 1000);
+      window.localStorage.setItem('accessToken', data.token);
+      setSuccess('Авторизация успешна! Токен сохранён в localStorage.');
     }
     catch (submitError) {
       setError(
@@ -99,7 +94,9 @@ const LoginForm = (): ReactNode => {
           {isSubmitting ? 'Загрузка...' : 'Войти'}
         </button>
         <p className={styles.hint}>
-          После успешной авторизации вы будете перенаправлены на главную страницу.
+          После успешной авторизации токен сохраняется в localStorage по ключу
+          <code>accessToken</code>
+          .
         </p>
       </div>
 
