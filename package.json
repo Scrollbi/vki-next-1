@@ -21,6 +21,7 @@
       "react": "19.1.0",
       "react-dom": "19.1.0",
       "react-hook-form": "^7.64.0",
+      "recharts": "^3.6.0",
       "reflect-metadata": "^0.2.2",
       "sqlite": "^5.1.1",
       "sqlite3": "^5.1.7",

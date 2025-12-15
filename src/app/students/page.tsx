@@ -1,8 +1,9 @@
 
 import Students from '@/components/Students/Students';
+import styles from './page.module.scss';
 
 const StudentsPage = (): React.ReactElement => (
-  <div>
+  <div className={styles.page}>
     <h1>Список студентов</h1>
     <Students />
   </div>
